@@ -1,0 +1,2 @@
+nohup cellranger count --id=H1X_GEX_experiment --fastqs=/home/sevastopol/data/gserranos/H1_kaust/Data --sample=H1X-d0 --transcriptome=/opt/CellRangerReferences/refdata-gex-GRCh38-2020-A --chemistry=ARC-v1 &
+nohup cellranger count --id=WT_GEX_experiment --fastqs=/home/sevastopol/data/gserranos/H1_kaust/Data --sample=WT-d0 --transcriptome=/opt/CellRangerReferences/refdata-gex-GRCh38-2020-A --chemistry=ARC-v1 &
