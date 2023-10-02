@@ -6,10 +6,25 @@ library(ggplot2)
 library(BSgenome.Hsapiens.UCSC.hg38)
 
 
+create_folder <- function(path) {
+  if (!dir.exists(path)) {
+    dir.create(path)
+  }
+}
+
+# counts <- Read10X_h5("/home/sevastopol/data/gserranos/H1_kaust/Data/WT_multiome/outs/filtered_feature_bc_matrix.h5")
+# fragpath <- "/home/sevastopol/data/gserranos/H1_kaust/Data/WT_multiome/outs/atac_fragments.tsv.gz"
+# Sample_Name <- "Test"
 
 
-counts <- Read10X_h5("/home/sevastopol/data/gserranos/H1_kaust/Data/WT_multiome/outs/filtered_feature_bc_matrix.h5")
-fragpath <- "/home/sevastopol/data/gserranos/H1_kaust/Data/WT_multiome/outs/atac_fragments.tsv.gz"
+counts <- Read10X_h5("/home/sevastopol/data/gserranos/H1_kaust/Data/H1X_multiome/outs/filtered_feature_bc_matrix.h5")
+fragpath <- "/home/sevastopol/data/gserranos/H1_kaust/Data/H1X_multiome/outs/atac_fragments.tsv.gz"
+Sample_Name <- "H1X"
+
+print(Sample_Name)
+
+create_folder(paste0('/home/sevastopol/data/gserranos/H1_kaust/Plots/Single_Results/', Sample_Name ))
+create_folder(paste0('/home/sevastopol/data/gserranos/H1_kaust/Data/Single_Results/', Sample_Name ))
 
 
 annotation <- GetGRangesFromEnsDb(ensdb = EnsDb.Hsapiens.v86)
@@ -18,6 +33,7 @@ seqlevels(annotation) <- paste0('chr', seqlevels(annotation))
 # create a Seurat object containing the RNA adata
 pbmc <- CreateSeuratObject(
   counts = counts$`Gene Expression`,
+  project = Sample_Name,
   assay = "RNA"
 )
 
@@ -34,27 +50,40 @@ DefaultAssay(pbmc) <- "ATAC"
 
 pbmc <- NucleosomeSignal(pbmc)
 pbmc <- TSSEnrichment(pbmc)
+# pbmc$fragCounts <- CountFragments(fragments = fragpath)
+# FRiP(pbmc, "ATAC", total.fragments="fragCounts", col.name = "FRiP", verbose = TRUE)
 
-pdf('/home/sevastopol/data/gserranos/H1_kaust/Plots/Multiome_Analysis/WT/QC_prefiltering.pdf')
+
+pdf(paste0('/home/sevastopol/data/gserranos/H1_kaust/Plots/Single_Results/', Sample_Name ,'/QC_prefiltering.pdf'))
 VlnPlot(
   object = pbmc,
   features = c("nCount_RNA", "nCount_ATAC", "TSS.enrichment", "nucleosome_signal"),
-  ncol = 4,
+  ncol = 2,
   pt.size = 0
 )
 dev.off()
 
 pbmc <- subset(
   x = pbmc,
-  subset = nCount_ATAC < 100000 &
-    nCount_RNA < 25000 &
-    nCount_ATAC > 1000 &
-    nCount_RNA > 1000 &
+  subset = 
+    nCount_ATAC < quantile(pbmc$nCount_ATAC, 0.9) &
+    nCount_ATAC > quantile(pbmc$nCount_ATAC, 0.1) &
+    nCount_RNA <  quantile(pbmc$nCount_RNA, 0.9) &
+    nCount_RNA >  quantile(pbmc$nCount_RNA, 0.1) &
     nucleosome_signal < 2 &
     TSS.enrichment > 1
 )
-pbmc
 
+pdf(paste0('/home/sevastopol/data/gserranos/H1_kaust/Plots/Single_Results/', Sample_Name ,'/QC_postfiltering.pdf'))
+VlnPlot(
+  object = pbmc,
+  features = c("nCount_RNA", "nCount_ATAC", "TSS.enrichment", "nucleosome_signal"),
+  ncol = 2,
+  pt.size = 0
+)
+dev.off()
+
+saveRDS(pbmc, paste0('/home/sevastopol/data/gserranos/H1_kaust/Data/Single_Results/', Sample_Name ,'/', Sample_Name,'_norm_Peaks_RNA.rds'))
 
 # Peak calling
 peaks <- CallPeaks(pbmc)
@@ -76,6 +105,7 @@ pbmc[["peaks"]] <- CreateChromatinAssay(
   fragments = fragpath,
   annotation = annotation
 )
+
 DefaultAssay(pbmc) <- "peaks"
 pbmc <- FindTopFeatures(pbmc, min.cutoff = 5)
 pbmc <- RunTFIDF(pbmc)
@@ -91,6 +121,17 @@ pbmc <- RunPCA(pbmc)
 pbmc <- RunUMAP(pbmc, dims = 1:50, reduction.name = 'umap.rna', reduction.key = 'rnaUMAP_')
 
 
+DefaultAssay(pbmc) <- "RNA"
+expressed <- c('KLF4', 'SOX2', 'NANOG')
+non_expressed <- c('NES', 'PAX6',  'NCAM1', 'FOXA2')
+pdf(paste0('/home/sevastopol/data/gserranos/H1_kaust/Plots/Single_Results/', Sample_Name ,'/Gene_Markers.pdf'))
+FeaturePlot(pbmc, features = expressed, order=TRUE)
+FeaturePlot(pbmc, features = non_expressed, order=TRUE)
+dev.off()
+
+saveRDS(pbmc, paste0('/home/sevastopol/data/gserranos/H1_kaust/Data/Single_Results/', Sample_Name ,'/', Sample_Name,'_norm_Peaks_RNA.rds'))
+
+
 pbmc <- FindMultiModalNeighbors(pbmc, reduction.list = list("pca", "lsi"), dims.list = list(1:50, 2:50))
 pbmc <- RunUMAP(pbmc, nn.name = "weighted.nn", reduction.name = "wnn.umap", reduction.key = "wnnUMAP_")
 pbmc <- FindClusters(pbmc, graph.name = "wsnn", algorithm = 3, verbose = FALSE)
@@ -101,13 +142,42 @@ p1 <- DimPlot(pbmc, reduction = "umap.rna",  group.by = "seurat_clusters", label
 p2 <- DimPlot(pbmc, reduction = "umap.atac", group.by = "seurat_clusters", label = TRUE, label.size = 2.5, repel = TRUE) + ggtitle("ATAC")
 p3 <- DimPlot(pbmc, reduction = "wnn.umap",  group.by = "seurat_clusters", label = TRUE, label.size = 2.5, repel = TRUE) + ggtitle("WNN")
 
-
-pdf('./Plots/Multiome_Analysis/WT/UMAP_RNA.pdf')
+pdf(paste0('/home/sevastopol/data/gserranos/H1_kaust/Plots/Single_Results/', Sample_Name ,'/UMAP_integration.pdf'))
 p1 + p2 + p3 & NoLegend() & theme(plot.title = element_text(hjust = 0.5))
 dev.off()
 
-DefaultAssay(pbmc) <- 'RNA'
-rna_barcodes <- colnames(pbmc)
-DefaultAssay(pbmc) <- 'ATAC'
-atac_barcodes <- colnames(pbmc)
+saveRDS(pbmc, paste0('/home/sevastopol/data/gserranos/H1_kaust/Data/Single_Results/', Sample_Name ,'/', Sample_Name,'_norm_Peaks_RNA.rds'))
+
+DefaultAssay(pbmc) <- "peaks"
+
+# first compute the GC content for each peak
+pbmc <- RegionStats(pbmc, genome = BSgenome.Hsapiens.UCSC.hg38)
+
+# link peaks to genes
+pbmc <- LinkPeaks(
+  object = pbmc,
+  peak.assay = "peaks",
+  expression.assay = "RNA"
+  # genes.use = c("SOX2", "NANOG")
+)
+
+saveRDS(pbmc, paste0('/home/sevastopol/data/gserranos/H1_kaust/Data/Single_Results/', Sample_Name ,'/', Sample_Name,'_norm_Peaks_RNA.rds'))
+
+
+pdf(paste0('/home/sevastopol/data/gserranos/H1_kaust/Plots/Single_Results/', Sample_Name ,'/Test.pdf'))
+CoveragePlot(
+  object = pbmc,
+  region = "SOX2",
+  features = "SOX2",
+  expression.assay = "RNA",
+  extend.upstream = 500,
+  extend.downstream = 10000
+)
+dev.off()
+
+
+# DefaultAssay(pbmc) <- 'RNA'
+# rna_barcodes <- colnames(pbmc)
+# DefaultAssay(pbmc) <- 'ATAC'
+# atac_barcodes <- colnames(pbmc)
 

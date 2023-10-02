@@ -1,0 +1,401 @@
+The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+which was just loaded, will retire in October 2023.
+Please refer to R-spatial evolution reports for details, especially
+https://r-spatial.org/r/2023/05/15/evolution4.html.
+It may be desirable to make the sf package available;
+package maintainers should consider adding sf to Suggests:.
+The sp package is now running under evolution status 2
+     (status 2 uses the sf package in place of rgdal)
+Attaching SeuratObject
+Loading required package: ensembldb
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which.max, which.min
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: AnnotationFilter
+
+Attaching package: 'ensembldb'
+
+The following object is masked from 'package:stats':
+
+    filter
+
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:ensembldb':
+
+    filter, select
+
+The following object is masked from 'package:AnnotationDbi':
+
+    select
+
+The following object is masked from 'package:Biobase':
+
+    combine
+
+The following objects are masked from 'package:GenomicRanges':
+
+    intersect, setdiff, union
+
+The following object is masked from 'package:GenomeInfoDb':
+
+    intersect
+
+The following objects are masked from 'package:IRanges':
+
+    collapse, desc, intersect, setdiff, slice, union
+
+The following objects are masked from 'package:S4Vectors':
+
+    first, intersect, rename, setdiff, setequal, union
+
+The following objects are masked from 'package:BiocGenerics':
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: 'Biostrings'
+
+The following object is masked from 'package:base':
+
+    strsplit
+
+Loading required package: rtracklayer
+Genome matrix has multiple modalities, returning a list of matrices for this genome
+[1] "H1X_H1TherThere were 24 warnings (use warnings() to see them)
+Computing hash
+Checking for 18645 cell barcodes
+Found 18645 cell barcodes
+Done Processing 1 million linesDone Processing 2 million linesDone Processing 3 million linesDone Processing 4 million linesDone Processing 5 million linesDone Processing 6 million linesDone Processing 7 million linesDone Processing 8 million linesDone Processing 9 million lines                                                  Done Processing 10 million linesDone Processing 11 million linesDone Processing 12 million linesDone Processing 13 million linesDone Processing 14 million linesDone Processing 15 million linesDone Processing 16 million linesDone Processing 17 million linesDone Processing 18 million linesDone Processing 19 million lines                                                  Done Processing 20 million linesDone Processing 21 million linesDone Processing 22 million linesDone Processing 23 million linesDone Processing 24 million linesDone Processing 25 million linesDone Processing 26 million linesDone Processing 27 million linesDone Processing 28 million linesDone Processing 29 million lines                                                  Done Processing 30 million linesDone Processing 31 million linesDone Processing 32 million linesDone Processing 33 million linesDone Processing 34 million linesDone Processing 35 million linesDone Processing 36 million linesDone Processing 37 million linesDone Processing 38 million linesDone Processing 39 million lines                                                  Done Processing 40 million linesDone Processing 41 million linesDone Processing 42 million linesDone Processing 43 million linesDone Processing 44 million linesDone Processing 45 million linesDone Processing 46 million linesDone Processing 47 million linesDone Processing 48 million linesDone Processing 49 million lines                                                  Done Processing 50 million linesDone Processing 51 million linesDone Processing 52 million linesDone Processing 53 million linesDone Processing 54 million linesDone Processing 55 million linesDone Processing 56 million linesDone Processing 57 million linesDone Processing 58 million linesDone Processing 59 million lines                                                  Done Processing 60 million linesDone Processing 61 million linesDone Processing 62 million linesDone Processing 63 million linesDone Processing 64 million linesDone Processing 65 million linesDone Processing 66 million linesDone Processing 67 million linesDone Processing 68 million linesDone Processing 69 million lines                                                  Done Processing 70 million linesDone Processing 71 million linesDone Processing 72 million linesDone Processing 73 million linesDone Processing 74 million linesDone Processing 75 million linesDone Processing 76 million linesDone Processing 77 million linesDone Processing 78 million linesDone Processing 79 million lines                                                  Done Processing 80 million linesDone Processing 81 million linesDone Processing 82 million linesDone Processing 83 million linesDone Processing 84 million linesDone Processing 85 million linesDone Processing 86 million linesDone Processing 87 million linesDone Processing 88 million linesDone Processing 89 million lines                                                  Done Processing 90 million linesDone Processing 91 million linesDone Processing 92 million linesDone Processing 93 million linesExtracting TSS positions
+Extracting fragments at TSSs
+
+Computing TSS enrichment score
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+INFO  @ Tue, 26 Sep 2023 09:25:20: 
+# Command line: callpeak -t /mnt/md0/data/gserranos/H1_kaust/Data/Day_0/H1X_H1_3_multiome/outs/atac_fragments.tsv.gz -g 2.7e+09 -f BED --nomodel --extsize 200 --shift -100 -n H1X_H1_3 --outdir /tmp/RtmpJZR2BM
+# ARGUMENTS LIST:
+# name = H1X_H1_INFO  @ Tue, 26 Sep 2023 09:26:16: 
+# Command line: callpeak -t /mnt/md0/data/gserranos/H1_kaust/Data/Day_0/H1_3_multiome/outs/atac_fragments.tsv.gz -g 2.7e+09 -f BED --nomodel --extsize 200 --shift -100 -n H1_3 --outdir /tmp/RtmpPBzbtw
+# ARGUMENTS LIST:
+# name = H1_3
+# format = BED
+# ChIP-seq file = ['/mnt/md0/data/gserranos/H1_kaust/Data/Day_0/H1_3_multiome/outs/atac_fragments.tsv.gz']
+# control file = None
+# effective genome size = 2.70e+09
+# band width = 300
+# model fold = [5, 50]
+# qvalue cutoff = 5.00e-02
+# The maximum gap between significant sites is assigned as the read length/tag size.
+# The minimum length of peaks is assigned as the predicted fragment length "d".
+# Larger dataset will be scaled towards smaller dataset.
+# Range for calculating regional lambda is: 10000 bps
+# Broad region calling is off
+# Paired-End mode is off
+ 
+INFO  @ Tue, 26 Sep 2023 09:26:16: #1 read tag files... 
+INFO  @ Tue, 26 Sep 2023 09:26:16: #1 read treatment tags... 
+INFO  @ Tue, 26 Sep 2023 09:26:17:  1000000 
+INFO  @ Tue, 26 Sep 2023 09:26:18:  2000000 
+INFO  @ Tue, 26 Sep 2023 09:26:19:  3000000 
+INFO  @ Tue, 26 Sep 2023 09:26:20:  4000000 
+INFO  @ Tue, 26 Sep 2023 09:26:22:  5000000 
+INFO  @ Tue, 26 Sep 2023 09:26:23:  6000000 
+INFO  @ Tue, 26 Sep 2023 09:26:24:  7000000 
+INFO  @ Tue, 26 Sep 2023 09:26:25:  8000000 
+INFO  @ Tue, 26 Sep 2023 09:26:26:  9000000 
+INFO  @ Tue, 26 Sep 2023 09:26:27:  10000000 
+INFO  @ Tue, 26 Sep 2023 09:26:28:  11000000 
+INFO  @ Tue, 26 Sep 2023 09:26:29:  12000000 
+INFO  @ Tue, 26 Sep 2023 09:26:30:  13000000 
+INFO  @ Tue, 26 Sep 2023 09:26:31:  14000000 
+INFO  @ Tue, 26 Sep 2023 09:26:32:  15000000 
+INFO  @ Tue, 26 Sep 2023 09:26:33:  16000000 
+INFO  @ Tue, 26 Sep 2023 09:26:34:  17000000 
+INFO  @ Tue, 26 Sep 2023 09:26:35:  18000000 
+INFO  @ Tue, 26 Sep 2023 09:26:36:  19000000 
+INFO  @ Tue, 26 Sep 2023 09:26:37:  20000000 
+INFO  @ Tue, 26 Sep 2023 09:26:38:  21000000 
+INFO  @ Tue, 26 Sep 2023 09:26:39:  22000000 
+INFO  @ Tue, 26 Sep 2023 09:26:40:  23000000 
+INFO  @ Tue, 26 Sep 2023 09:26:41:  24000000 
+INFO  @ Tue, 26 Sep 2023 09:26:42:  25000000 
+INFO  @ Tue, 26 Sep 2023 09:26:43:  26000000 
+INFO  @ Tue, 26 Sep 2023 09:26:44:  27000000 
+INFO  @ Tue, 26 Sep 2023 09:26:45:  28000000 
+INFO  @ Tue, 26 Sep 2023 09:26:46:  29000000 
+INFO  @ Tue, 26 Sep 2023 09:26:47:  30000000 
+INFO  @ Tue, 26 Sep 2023 09:26:48:  31000000 
+INFO  @ Tue, 26 Sep 2023 09:26:49:  32000000 
+INFO  @ Tue, 26 Sep 2023 09:26:50:  33000000 
+INFO  @ Tue, 26 Sep 2023 09:26:51:  34000000 
+INFO  @ Tue, 26 Sep 2023 09:26:52:  35000000 
+INFO  @ Tue, 26 Sep 2023 09:26:53:  36000000 
+INFO  @ Tue, 26 Sep 2023 09:26:54:  37000000 
+INFO  @ Tue, 26 Sep 2023 09:26:55:  38000000 
+INFO  @ Tue, 26 Sep 2023 09:26:56:  39000000 
+INFO  @ Tue, 26 Sep 2023 09:26:57:  40000000 
+INFO  @ Tue, 26 Sep 2023 09:26:58:  41000000 
+INFO  @ Tue, 26 Sep 2023 09:26:59:  42000000 
+INFO  @ Tue, 26 Sep 2023 09:27:00:  43000000 
+INFO  @ Tue, 26 Sep 2023 09:27:01:  44000000 
+INFO  @ Tue, 26 Sep 2023 09:27:02:  45000000 
+INFO  @ Tue, 26 Sep 2023 09:27:03:  46000000 
+INFO  @ Tue, 26 Sep 2023 09:27:04:  47000000 
+INFO  @ Tue, 26 Sep 2023 09:27:05:  48000000 
+INFO  @ Tue, 26 Sep 2023 09:27:06:  49000000 
+INFO  @ Tue, 26 Sep 2023 09:27:07:  50000000 
+INFO  @ Tue, 26 Sep 2023 09:27:08:  51000000 
+INFO  @ Tue, 26 Sep 2023 09:27:09:  52000000 
+INFO  @ Tue, 26 Sep 2023 09:27:10:  53000000 
+INFO  @ Tue, 26 Sep 2023 09:27:11:  54000000 
+INFO  @ Tue, 26 Sep 2023 09:27:12:  55000000 
+INFO  @ Tue, 26 Sep 2023 09:27:13:  56000000 
+INFO  @ Tue, 26 Sep 2023 09:27:14:  57000000 
+INFO  @ Tue, 26 Sep 2023 09:27:15:  58000000 
+INFO  @ Tue, 26 Sep 2023 09:27:16:  59000000 
+INFO  @ Tue, 26 Sep 2023 09:27:17:  60000000 
+INFO  @ Tue, 26 Sep 2023 09:27:18:  61000000 
+INFO  @ Tue, 26 Sep 2023 09:27:19:  62000000 
+INFO  @ Tue, 26 Sep 2023 09:27:20:  63000000 
+INFO  @ Tue, 26 Sep 2023 09:27:21:  64000000 
+INFO  @ Tue, 26 Sep 2023 09:27:22:  65000000 
+INFO  @ Tue, 26 Sep 2023 09:27:23:  66000000 
+INFO  @ Tue, 26 Sep 2023 09:27:24:  67000000 
+INFO  @ Tue, 26 Sep 2023 09:27:25:  68000000 
+INFO  @ Tue, 26 Sep 2023 09:27:26:  69000000 
+INFO  @ Tue, 26 Sep 2023 09:27:27:  70000000 
+INFO  @ Tue, 26 Sep 2023 09:27:29:  71000000 
+INFO  @ Tue, 26 Sep 2023 09:27:30:  72000000 
+INFO  @ Tue, 26 Sep 2023 09:27:31:  73000000 
+INFO  @ Tue, 26 Sep 2023 09:27:32:  74000000 
+INFO  @ Tue, 26 Sep 2023 09:27:33:  75000000 
+INFO  @ Tue, 26 Sep 2023 09:27:34:  76000000 
+INFO  @ Tue, 26 Sep 2023 09:27:35:  77000000 
+INFO  @ Tue, 26 Sep 2023 09:27:36:  78000000 
+INFO  @ Tue, 26 Sep 2023 09:27:37:  79000000 
+INFO  @ Tue, 26 Sep 2023 09:27:38:  80000000 
+INFO  @ Tue, 26 Sep 2023 09:27:39:  81000000 
+INFO  @ Tue, 26 Sep 2023 09:27:40:  82000000 
+INFO  @ Tue, 26 Sep 2023 09:27:41:  83000000 
+INFO  @ Tue, 26 Sep 2023 09:27:42:  84000000 
+INFO  @ Tue, 26 Sep 2023 09:27:43:  85000000 
+INFO  @ Tue, 26 Sep 2023 09:27:44:  86000000 
+INFO  @ Tue, 26 Sep 2023 09:27:45:  87000000 
+INFO  @ Tue, 26 Sep 2023 09:27:46:  88000000 
+INFO  @ Tue, 26 Sep 2023 09:27:47:  89000000 
+INFO  @ Tue, 26 Sep 2023 09:27:48:  90000000 
+INFO  @ Tue, 26 Sep 2023 09:27:49:  91000000 
+INFO  @ Tue, 26 Sep 2023 09:27:50:  92000000 
+INFO  @ Tue, 26 Sep 2023 09:27:51:  93000000 
+INFO  @ Tue, 26 Sep 2023 09:27:52:  94000000 
+INFO  @ Tue, 26 Sep 2023 09:27:53:  95000000 
+INFO  @ Tue, 26 Sep 2023 09:27:54:  96000000 
+INFO  @ Tue, 26 Sep 2023 09:27:55:  97000000 
+INFO  @ Tue, 26 Sep 2023 09:27:56:  98000000 
+INFO  @ Tue, 26 Sep 2023 09:27:57:  99000000 
+INFO  @ Tue, 26 Sep 2023 09:27:58:  100000000 
+INFO  @ Tue, 26 Sep 2023 09:27:59:  101000000 
+INFO  @ Tue, 26 Sep 2023 09:28:00:  102000000 
+INFO  @ Tue, 26 Sep 2023 09:28:01:  103000000 
+INFO  @ Tue, 26 Sep 2023 09:28:02:  104000000 
+INFO  @ Tue, 26 Sep 2023 09:28:03:  105000000 
+INFO  @ Tue, 26 Sep 2023 09:28:05:  106000000 
+INFO  @ Tue, 26 Sep 2023 09:28:06:  107000000 
+INFO  @ Tue, 26 Sep 2023 09:28:07:  108000000 
+INFO  @ Tue, 26 Sep 2023 09:28:08:  109000000 
+INFO  @ Tue, 26 Sep 2023 09:28:09:  110000000 
+INFO  @ Tue, 26 Sep 2023 09:28:10:  111000000 
+INFO  @ Tue, 26 Sep 2023 09:28:11:  112000000 
+INFO  @ Tue, 26 Sep 2023 09:28:12:  113000000 
+INFO  @ Tue, 26 Sep 2023 09:28:13:  114000000 
+INFO  @ Tue, 26 Sep 2023 09:28:14:  115000000 
+INFO  @ Tue, 26 Sep 2023 09:28:15:  116000000 
+INFO  @ Tue, 26 Sep 2023 09:28:16:  117000000 
+INFO  @ Tue, 26 Sep 2023 09:28:17:  118000000 
+INFO  @ Tue, 26 Sep 2023 09:28:18:  119000000 
+INFO  @ Tue, 26 Sep 2023 09:28:19:  120000000 
+INFO  @ Tue, 26 Sep 2023 09:28:20:  121000000 
+INFO  @ Tue, 26 Sep 2023 09:28:21:  122000000 
+INFO  @ Tue, 26 Sep 2023 09:28:22:  123000000 
+INFO  @ Tue, 26 Sep 2023 09:28:23:  124000000 
+INFO  @ Tue, 26 Sep 2023 09:28:24:  125000000 
+INFO  @ Tue, 26 Sep 2023 09:28:25:  126000000 
+INFO  @ Tue, 26 Sep 2023 09:28:26:  127000000 
+INFO  @ Tue, 26 Sep 2023 09:28:27:  128000000 
+INFO  @ Tue, 26 Sep 2023 09:29:29: #3 Call peaks for each chromosome... 
+INFO  @ Tue, 26 Sep 2023 09:31:00: #4 Write output xls file... /tmp/RtmpJZR2BM/H1X_H1_3_peaks.xls 
+INFO  @ Tue, 26 Sep 2023 09:31:00: #4 Write peak in narrowPeak format file... /tmp/RtmpJZR2BM/H1X_H1_3_peaks.narrowPeak 
+INFO  @ Tue, 26 Sep 2023 09:31:01: #4 Write summits bed file... /tmp/RtmpJZR2BM/H1X_H1_3_summits.bed 
+INFO  @ Tue, 26 Sep 2023 09:31:01: Done! 
+Extracting reads overlapping genomic regions
+Computing hash
+Checking for 12255 cell barcodes
+Performing TF-IDF normalization
+Running SVD
+Scaling cell embeddings
+Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session
+09:50:46 UMAP embedding parameters a = 0.9922 b = 1.112
+09:50:46 Read 12255 rows and found 49 numeric columns
+09:50:46 Using Annoy for neighbor search, n_neighbors = 30
+09:50:46 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+09:50:47 Writing NN index file to temp file /tmp/RtmpJZR2BM/file887154b079bc
+09:50:47 Searching Annoy index using 1 thread, search_k = 3000
+09:50:52 Annoy recall = 100%
+09:50:54 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+09:50:57 Initializing from normalized Laplacian + noise (using irlba)
+09:50:57 Commencing optimization for 200 epochs, with 457774 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+09:51:03 Optimization finished
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Centering and scaling data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |==                                                                    |   3%  |                                                                              |====                                                                  |   5%  |                                                                              |======                                                                |   8%  |                                                                              |========                                                              |  11%  |                                                                              |=========                                                             |  14%  |                                                                              |===========                                                           |  16%  |                                                                              |=============                                                         |  19%  |                                                                              |===============                                                       |  22%  |                                                                              |=================                                                     |  24%  |                                                                              |===================                                                   |  27%  |                                                                              |=====================                                                 |  30%  |                                                                              |=======================                                               |  32%  |                                                                              |=========================                                             |  35%  |                                                                              |==========================                                            |  38%  |                                                                              |============================                                          |  41%  |                                                                              |==============================                                        |  43%  |                                                                              |================================                                      |  46%  |                                                                              |==================================                                    |  49%  |                                                                              |====================================                                  |  51%  |                                                                              |======================================                                |  54%  |                                                                              |========================================                              |  57%  |                                                                              |==========================================                            |  59%  |                                                                              |============================================                          |  62%  |                                                                              |=============================================                         |  65%  |                                                                              |===============================================                       |  68%  |                                                                              |=================================================                     |  70%  |                                                                              |===================================================                   |  73%  |                                                                              |=====================================================                 |  76%  |                                                                              |=======================================================               |  78%  |                                                                              |=========================================================             |  81%  |                                                                              |===========================================================           |  84%  |                                                                              |=============================================================         |  86%  |                                                                              |==============================================================        |  89%  |                                                                              |================================================================      |  92%  |                                                                              |==================================================================    |  95%  |                                                                              |====================================================================  |  97%  |                                                                              |======================================================================| 100%
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+PC_ 1 
+Positive:  AP002026.1, RPL13A, PTMA, FBXL20, RPS6, RPS11, FTH1, TLE4, INTS6, NACA 
+	   MEIS2, TERF2IP, LINC00476, NECTIN3-AS1, NXPH2, LEF1, STPG4, NCL, CRY1, NR3C2 
+	   DPH6-DT, MSH4, SLC16A10, ENPEP, ZSWIM6, FAM117B, NIPAL1, AC009522.1, ELF1, RNF24 
+Negative:  GRID2, MALAT1, XACT, ANK2, GPC6, PRKG1, RIMS2, ADCY2, ATRNL1, FHIT 
+	   IMMP2L, NLGN1, RAD51B, FAM155A, SNHG14, TMEM132D, MIR924HG, AC005062.1, ANK3, FAT3 
+	   AL157778.1, DLGAP1, ERC2, SMYD3, RORA, EXOC4, NBEA, SYT1, NPAS3, PTPRG 
+PC_ 2 
+Positive:  MALAT1, FHIT, GRID2, RAD51B, TOP2A, LINGO2, SNHG14, ATRNL1, WWOX, AL049828.1 
+	   BBS9, CENPE, AC010967.1, AC113414.1, AC008014.1, XACT, PTCHD1-AS, DPH6, LINC02641, AC021231.1 
+	   IMMP2L, KIF14, MACROD2, PTMA, G2E3, ZBTB20, SGO2, AL008633.1, RPL13A, CENPF 
+Negative:  AC073050.1, LRFN5, GALNT13, AC022140.1, ADGRL3, GRIA4, SLIT2, KCNH7, LINC01194, KCNQ5 
+	   FRMD4B, JARID2, RYR2, NFIA, KCND2, KCTD8, ZNF385D, PPM1L, FBXL20, COL25A1 
+	   SLC25A21, LARGE1, CNKSR2, NTNG1, STAC, HCN1, LINC01162, ADGRB3, DPP6, AC092691.1 
+PC_ 3 
+Positive:  TRIM24, UST, CENPF, FBXL20, ZSWIM6, TENM3, AP002026.1, EFNA5, SLC2A13, UNC5D 
+	   PCED1B, CENPE, EDIL3, TOX, GPC4, EBF2, MMP16, TLE4, HS3ST4, ZDHHC14 
+	   MEF2C, SCLT1, STXBP5L, EPHA7, G2E3, ESYT2, SEMA3A, SHISA9, ELAVL2, ROBO1 
+Negative:  AL157778.1, RYR2, SYT1, FAM155A, AC005062.1, GRID2, NRG3, MIR924HG, AL392023.2, IMMP2L 
+	   FAT3, AL138720.1, AC034268.2, XACT, LINC01099, TMEM132B, AC003044.1, PTMA, CTNND2, AL691420.1 
+	   DPP6, LRRTM4, RANBP17, KHDRBS2, ANK2, LINC01091, KCND2, LINC01090, NTM, LURAP1L-AS1 
+PC_ 4 
+Positive:  GPC6, GNA14, EBF2, AC099499.1, RFC3, LINC01194, AC022140.1, PURPL, NRXN1, SLC2A13 
+	   LDLRAD4, LINC01090, AEBP2, PCED1B, LRRTM4, AL390957.1, AL392023.2, LINC01950, SNHG14, NEAT1 
+	   KAZN, KIAA0825, Z96074.1, AC007218.1, KCNH7, PTMA, LINC01205, CADM2, PLBD1, AC114971.1 
+Negative:  JARID2, CENPE, NLGN4X, WWOX, RBFOX1, CENPF, TOP2A, G2E3, ATF7IP2, NR5A2 
+	   PLXDC2, CHST9, TMEM132B, INTS6, SORBS2, PIF1, KIF14, SPATS2L, LINGO2, NLGN1 
+	   PRDM14, SYT1, AC073050.1, RORB, MALAT1, ZNF407, FHIT, KIF4A, RIMS2, TNIK 
+PC_ 5 
+Positive:  TMEM132D, LDLRAD4, CALN1, RPL13A, GPC6, RPS6, NRXN1, EBF2, PTMA, MGAT4C 
+	   TENM4, GNA14, RPS11, ATRNL1, NACA, GRIP1, GALNT17, PDZD2, MECOM, FTH1 
+	   PARD3B, DLGAP1, HS3ST4, TRPM3, AC007368.1, NKAIN3, NRG3, KCND2, SHISA6, NCAM1 
+Negative:  AC022140.1, BBS9, PURPL, TRAF3IP2-AS1, TRDN, AEBP2, AL353138.1, MIR34AHG, NEAT1, AC011997.1 
+	   JARID2, ASCC3, TMEM161B-AS1, AC019155.2, AC012078.2, SPATS2L, LINC01194, LRRTM4, LINC01950, AC007218.1 
+	   AC008014.1, AP002856.2, AL390957.1, RFX3-AS1, AC005062.1, HTR2C, SPRY4-AS1, AC093866.1, MIR205HG, AP002026.1 
+09:52:23 UMAP embedding parameters a = 0.9922 b = 1.112
+09:52:23 Read 12255 rows and found 50 numeric columns
+09:52:23 Using Annoy for neighbor search, n_neighbors = 30
+09:52:23 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+09:52:25 Writing NN index file to temp file /tmp/RtmpJZR2BM/file887157c9b53e0
+09:52:25 Searching Annoy index using 1 thread, search_k = 3000
+09:52:29 Annoy recall = 100%
+09:52:31 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+09:52:34 Initializing from normalized Laplacian + noise (using irlba)
+09:52:34 Commencing optimization for 200 epochs, with 544876 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+09:52:41 Optimization finished
+null device 
+          1 
+Calculating cell-specific modality weights
+Finding 20 nearest neighbors for each modality.
+Calculating kernel bandwidths
+Finding multimodal neighbors
+Constructing multimodal KNN graph
+Constructing multimodal SNN graph
+09:58:14 UMAP embedding parameters a = 0.9922 b = 1.112
+09:58:16 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 20
+09:58:18 Initializing from normalized Laplacian + noise (using irlba)
+09:58:19 Commencing optimization for 200 epochs, with 374386 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+09:58:25 Optimization finished
+null device 
+          1 
+Testing 20943 genes and 265208 peaks
+Found gene coordinates for 15221 genes
+'as(<dgCMatrix>, "dgTMatrix")' is deprecated.
+Use 'as(., "TsparseMatrix")' instead.
+See help("Deprecated") and help("Matrix-deprecated").
+null device 
+          1 
