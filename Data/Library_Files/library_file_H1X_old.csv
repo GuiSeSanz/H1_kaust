@@ -1,0 +1,3 @@
+fastqs,sample,library_type
+/home/sevastopol/data/gserranos/H1_kaust/Data/scGEX/H1X,H1X-d0,Gene Expression
+/home/sevastopol/data/gserranos/H1_kaust/Data/scATAC/H1X,H1X-d0,Chromatin Accessibility

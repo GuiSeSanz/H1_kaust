@@ -1,0 +1,6 @@
+fastqs,sample,library_type
+/home/sevastopol/data/gserranos/H1_kaust/Data/DownloadVincenzo/X201SC23060890-Z01-F001_01/01.RawData/H1_WT_run_1,H1_WT-SCI7T001-SCI5T001_HHMLNDSX7,Gene Expression
+/home/sevastopol/data/gserranos/H1_kaust/Data/DownloadVincenzo/X201SC23060890-Z02-F001/01.Raw_data/H1_WT_A,H1_WT_A-AK12517_H3TJWDRX3,Chromatin Accessibility
+/home/sevastopol/data/gserranos/H1_kaust/Data/DownloadVincenzo/X201SC23060890-Z02-F001/01.Raw_data/H1_WT_A_2,H1_WT_A_2-AK12518_H3TJWDRX3,Chromatin Accessibility
+/home/sevastopol/data/gserranos/H1_kaust/Data/DownloadVincenzo/X201SC23060890-Z02-F001/01.Raw_data/H1_WT_A_3,H1_WT_A_3-AK12519_H3TJWDRX3,Chromatin Accessibility
+/home/sevastopol/data/gserranos/H1_kaust/Data/DownloadVincenzo/X201SC23060890-Z02-F001/01.Raw_data/H1_WT_A_4,H1_WT_A_4-AK12520_H3TJWDRX3,Chromatin Accessibility
